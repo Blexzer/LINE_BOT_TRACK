@@ -47,9 +47,9 @@ if (!is_null($events['events'])) {
 				// $lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
 				$x = array(
 					'type' => 'text',
-					'text' => $bar.'
-					ผู้รับ: '.$RECEIVER_NAME.'('.$DEST_PROVINCE.')'.'
-					สถานะปัจจุบัน: '. $lo .' '.$ACTION_DATETIME
+					'text' => 'Track: '.$bar.'
+					ผู้รับ: '.$RECEIVER_NAME.' ('.$DEST_PROVINCE.')'.'
+					สถานะปัจจุบัน: '. $lo .'('.$ACTION_DATETIME .')'
 					);
 				$messages[]=$x;
 			}
