@@ -34,8 +34,8 @@ if (!is_null($events['events'])) {
 
             // Build message to reply back
 			$messages = [
-			// 'type' => 'text',
-			'text' => $text
+			'type' => 'text',
+			// 'text' => $text
 			];
 
 // 			$stringInput = 'กชรุณาช่วยค้นหาrdc0200018411และ RDC0200018410ด้วยครับ';
@@ -66,7 +66,7 @@ if (!is_null($events['events'])) {
 			$result = curl_exec($ch);
 			curl_close($ch);
 
-			echo $text . "\r\n";
+			echo $result . "\r\n";
 		}
 	}
 }
