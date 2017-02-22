@@ -92,12 +92,15 @@ if (!empty($events['events'])) {
 			// }
 			if(sizeof($getBarcode)>0){
 				for($i= 0 ;$i<sizeof($getBarcode);$i++){
-					$messages = [
-					'type' => 'text',
-					'text' => $getBarcode[$i]
-					];
+					$messages[]  = array('type' => 'text','text' => $getBarcode[$i]);
+					// 'type' => 'text',
+					// 'text' => $getBarcode[$i]
+					// ;
 			   // Make a POST Request to Messaging API to reply to sender
-					$url = 'https://api.line.me/v2/bot/message/reply';
+					
+				}
+			}
+			$url = 'https://api.line.me/v2/bot/message/reply';
 					$data = [
 					'replyToken' => $replyToken,
 					'messages' => [$messages],
@@ -115,8 +118,6 @@ if (!empty($events['events'])) {
 					curl_close($ch);
 
 					echo $result;
-				}
-			}
 		}
 	}
 
