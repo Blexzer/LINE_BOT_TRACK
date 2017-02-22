@@ -97,7 +97,7 @@ $events = json_decode($content, true);
 // 					// 'text' => $getBarcode[$i]
 // 					// ;
 // 			   // Make a POST Request to Messaging API to reply to sender
-					
+
 // 				}
 // 					$url = 'https://api.line.me/v2/bot/message/reply';
 // 					$data = [
@@ -126,15 +126,15 @@ $events = json_decode($content, true);
 
 if (!is_null($events['events'])) {
     // Loop through each event
-    foreach ($events['events'] as $event) {
+	foreach ($events['events'] as $event) {
         // Reply only when message sent is in 'text' format
-        if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
             // Get text sent
-            $text = $event['message']['text'];
+			$text = $event['message']['text'];
             // Get replyToken
-            $replyToken = $event['replyToken'];
+			$replyToken = $event['replyToken'];
 
-            $strCut = explode('RDC',strtoupper($text));
+			$strCut = explode('RDC',strtoupper($text));
 			for($i=0;$i<sizeof($strCut);$i++){
 				if(strlen($strCut[$i])>=10) {
 					$countStr = str_split($strCut[$i], 10);
@@ -146,35 +146,43 @@ if (!is_null($events['events'])) {
 			}
 
             // Build message to reply back
-            for($i=0;$i<sizeof($getBarcode);$i++){
-            	$x = array(
-                	'type' => 'text',
-                	'text' => $getBarcode[$i]
-            	);
-            	$messages[]=$x;
-            }
+			for($i=0;$i<sizeof($getBarcode);$i++){
+				$lineSession = 'testBot';
+
+				$dataX = array("DATA" => $getBarcode[$i], "CREATE" => $lineSession);
+				$data_string = json_encode($dataX);
+				$urlBWAPI = "http://122.155.180.139/SERVICETRACK/service_linebot_track_temp.php" ;
+				$resultApi = json_decode(postJSONdataAPI($urlBWAPI, $data_string),true);
+				$bar = $result[0]["BARCODE"];
+				$lo = $result[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
+				$x = array(
+					'type' => 'text',
+					'text' => $bar.' สถานะปัจจุบัน: '. $lo
+					);
+				$messages[]=$x;
+			}
 
             // Make a POST Request to Messaging API to reply to sender
-            $url = 'https://api.line.me/v2/bot/message/reply';
-            $data = [
-                'replyToken' => $replyToken,
-                'messages' => $messages,
-            ];
-            $post = json_encode($data);
-            $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+			$url = 'https://api.line.me/v2/bot/message/reply';
+			$data = [
+			'replyToken' => $replyToken,
+			'messages' => $messages,
+			];
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-            $result = curl_exec($ch);
-            curl_close($ch);
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			$result = curl_exec($ch);
+			curl_close($ch);
 
-            echo $result . "\r\n";
-        }
-    }
+			echo $result . "\r\n";
+		}
+	}
 }
 echo "OK";
 
