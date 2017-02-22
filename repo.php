@@ -34,7 +34,8 @@ if (!is_null($events['events'])) {
 				$messages = [
 				'type' => 'text',
 				'text' => $bar
-				];
+				],['type' => 'text',
+				'text' => $bar];
 
 // 			
 
