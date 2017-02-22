@@ -41,10 +41,14 @@ if (!is_null($events['events'])) {
 				$resultApi = json_decode(postJSONdataAPI($urlBWAPI, $data_string),true);
 				$bar = $resultApi[0]["BARCODE"];
 				$lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
+				$ACTION_DATETIME = $resultApi[0]["RESULT"][0]['ACTION_DATETIME'];
+				// $lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
+				// $lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
+				// $lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
 				$x = array(
 					'type' => 'text',
-					'text' => $bar.' 
-					สถานะปัจจุบัน: '. $lo
+					'text' => $bar.'
+					สถานะปัจจุบัน: '. $lo .' '.$ACTION_DATETIME
 					);
 				$messages[]=$x;
 			}
