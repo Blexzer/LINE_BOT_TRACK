@@ -28,8 +28,8 @@ if (!is_null($events['events'])) {
 
 			$replyToken = $event['replyToken'];
 			for($i =0 ;$i<sizeof($resultApi);$i++){
-				$bar = $resultApi[0]["BARCODE"];
-				$lo = $resultApi[0]["RESULT"][$i]['ACTION_TRACK_DESCRIPTION'];
+				$bar = $resultApi[$i]["BARCODE"];
+				$lo = $resultApi[$i]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
             // Build message to reply back
 				$messages = [
 				'type' => 'text',
