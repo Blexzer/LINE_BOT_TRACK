@@ -17,19 +17,29 @@ if (!is_null($events['events'])) {
             // Get text sent
 			$text = $event['message']['text'];
             // Get replyToken
-			$stringInput = $text;
+			// $stringInput = $text;
+			$strCut = explode('RDC',strtoupper($text));
+			for($i=0;$i<sizeof($strCut);$i++){
+				if(strlen($strCut[$i])>=10) {
+					$countStr = str_split($strCut[$i], 10);
+					if(is_numeric($countStr[0])){
+						$barcode = 'RDC'.$countStr[0];
+						$getBarcode[] = $barcode;
+					}
+				}
+			}
 			$lineSession = 'testBot';
-
-			$dataX = array("DATA" => $stringInput, "CREATE" => $lineSession);
-			$data_string = json_encode($dataX);
-			$urlBWAPI = "http://122.155.180.139/SERVICETRACK/service_linebot_track_temp.php" ;
-			$resultApi = json_decode(postJSONdataAPI($urlBWAPI, $data_string),true);
+			for($i =0 ;$i<sizeof($getBarcode);$i++){
+				$dataX = array("DATA" => $getBarcode[$i], "CREATE" => $lineSession);
+				$data_string = json_encode($dataX);
+				$urlBWAPI = "http://122.155.180.139/SERVICETRACK/service_linebot_track_temp.php" ;
+				$resultApi = json_decode(postJSONdataAPI($urlBWAPI, $data_string),true);
 			// echo sizeof($result);
 
-			$replyToken = $event['replyToken'];
-			for($i =0 ;$i<sizeof($resultApi);$i++){
-				$bar = $resultApi[$i]["BARCODE"];
-				$lo = $resultApi[$i]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
+				$replyToken = $event['replyToken'];
+
+				$bar = $resultApi[0]["BARCODE"];
+				$lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
             // Build message to reply back
 				$messages = [
 				'type' => 'text',
