@@ -153,8 +153,8 @@ if (!is_null($events['events'])) {
 				$data_string = json_encode($dataX);
 				$urlBWAPI = "http://122.155.180.139/SERVICETRACK/service_linebot_track_temp.php" ;
 				$resultApi = json_decode(postJSONdataAPI($urlBWAPI, $data_string),true);
-				$bar = $result[0]["BARCODE"];
-				$lo = $result[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
+				$bar = $resultApi[0]["BARCODE"];
+				$lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
 				$x = array(
 					'type' => 'text',
 					'text' => $bar.' สถานะปัจจุบัน: '. $lo
