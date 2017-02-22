@@ -31,11 +31,13 @@ if (!is_null($events['events'])) {
 				$bar = $resultApi[$i]["BARCODE"];
 				$lo = $resultApi[$i]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
             // Build message to reply back
-				$messages = [
+				$messages = [{
 				'type' => 'text',
-				'text' => $bar
-				],['type' => 'text',
-				'text' => $bar];
+				'text' => $bar},{
+					'type' => 'text',
+				'text' => $lo
+				}
+				],;
 
 // 			
 
