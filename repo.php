@@ -42,12 +42,13 @@ if (!is_null($events['events'])) {
 				$bar = $resultApi[0]["BARCODE"];
 				$lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
 				$ACTION_DATETIME = $resultApi[0]["RESULT"][0]['ACTION_DATETIME'];
-				// $lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
-				// $lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
+				$RECEIVER_NAME = $resultApi[0]["RESULT"][0]['RECEIVER_NAME'];
+				$DEST_PROVINCE = $resultApi[0]["RESULT"][0]['DEST_PROVINCE'];
 				// $lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
 				$x = array(
 					'type' => 'text',
 					'text' => $bar.'
+					ผู้รับ: '.$RECEIVER_NAME.'('.$DEST_PROVINCE.')'.'
 					สถานะปัจจุบัน: '. $lo .' '.$ACTION_DATETIME
 					);
 				$messages[]=$x;
