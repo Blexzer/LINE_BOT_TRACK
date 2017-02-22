@@ -134,11 +134,22 @@ if (!is_null($events['events'])) {
             // Get replyToken
             $replyToken = $event['replyToken'];
 
+            $strCut = explode('RDC',strtoupper($text));
+			for($i=0;$i<sizeof($strCut);$i++){
+				if(strlen($strCut[$i])>=10) {
+					$countStr = str_split($strCut[$i], 10);
+					if(is_numeric($countStr[0])){
+						$barcode = 'RDC'.$countStr[0];
+						$getBarcode[] = $barcode;
+					}
+				}
+			}
+
             // Build message to reply back
-            for($i=0;$i<5;$i++){
+            for($i=0;$i<sizeof($getBarcode);$i++){
             	$x = array(
                 	'type' => 'text',
-                	'text' => $i
+                	'text' => $getBarcode[$i]
             	);
             	$messages[]=$x;
             }
