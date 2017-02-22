@@ -49,7 +49,7 @@ if (!is_null($events['events'])) {
 					'type' => 'text',
 					'text' => 'Track: '.$bar.'
 					ผู้รับ: '.$RECEIVER_NAME.' ('.$DEST_PROVINCE.')'.'
-					สถานะปัจจุบัน: '. $lo .'('.$ACTION_DATETIME .')'
+					สถานะ: '. $lo .' ('.$ACTION_DATETIME .')'
 					);
 				$messages[]=$x;
 			}
