@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
 			$dataX = array("DATA" => $stringInput, "CREATE" => $lineSession);
 			$data_string = json_encode($dataX);
 			$urlBWAPI = "http://122.155.180.139/SERVICETRACK/service_linebot_track_temp.php" ;
-			$result = postJSONdataAPI($urlBWAPI, $data_string);
+			$resultApi = json_decode(postJSONdataAPI($urlBWAPI, $data_string),true);
 			// echo sizeof($result);
 
 			$replyToken = $event['replyToken'];
@@ -31,7 +31,7 @@ if (!is_null($events['events'])) {
             // Build message to reply back
 			$messages = [
 			'type' => 'text',
-			'text' => $result
+			'text' => sizeof($resultApi)
 			];
 
 // 			
