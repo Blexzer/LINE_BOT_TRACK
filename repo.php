@@ -99,8 +99,7 @@ if (!empty($events['events'])) {
 			   // Make a POST Request to Messaging API to reply to sender
 					
 				}
-			}
-			$url = 'https://api.line.me/v2/bot/message/reply';
+					$url = 'https://api.line.me/v2/bot/message/reply';
 					$data = [
 					'replyToken' => $replyToken,
 					'messages' => [$messages],
@@ -117,7 +116,9 @@ if (!empty($events['events'])) {
 					$result = curl_exec($ch);
 					curl_close($ch);
 
-					echo $result;
+					echo json_encode($messages);
+			}
+
 		}
 	}
 
