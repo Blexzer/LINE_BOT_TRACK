@@ -43,7 +43,7 @@ if (!is_null($events['events'])) {
 				$lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
 				$x = array(
 					'type' => 'text',
-					'text' => $bar.'\nสถานะปัจจุบัน: '. $lo
+					'text' => urlencode($bar.'\nสถานะปัจจุบัน: '. $lo);
 					);
 				$messages[]=$x;
 			}
