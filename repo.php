@@ -80,20 +80,21 @@ if (!empty($events['events'])) {
 				}
 			}
 
+			// if(sizeof($getBarcode)>0){
+			// 	for($i= 0 ;$i<sizeof($getBarcode);$i++){
+			// 		$lineSession = 'testBot';
+
+			// 		$dataX = array("DATA" => $getBarcode[$i], "CREATE" => $lineSession);
+			// 		$data_string = json_encode($dataX);
+			// 		$urlBWAPI = "http://122.155.180.139/SERVICETRACK/service_linebot_track_temp.php" ;
+			// 		$resultApi[] = json_decode(postJSONdataAPI($urlBWAPI, $data_string),true);
+			// 	}
+			// }
 			if(sizeof($getBarcode)>0){
 				for($i= 0 ;$i<sizeof($getBarcode);$i++){
-					$lineSession = 'testBot';
-
-					$dataX = array("DATA" => $getBarcode[$i], "CREATE" => $lineSession);
-					$data_string = json_encode($dataX);
-					$urlBWAPI = "http://122.155.180.139/SERVICETRACK/service_linebot_track_temp.php" ;
-					$resultApi = json_decode(postJSONdataAPI($urlBWAPI, $data_string),true);
-					$bar = $result[0]["BARCODE"];
-					$lo = $result[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
-
 					$messages = [
 					'type' => 'text',
-					'text' => $bar
+					'text' => $getBarcode[$i]
 					];
 			   // Make a POST Request to Messaging API to reply to sender
 					$url = 'https://api.line.me/v2/bot/message/reply';
@@ -116,8 +117,6 @@ if (!empty($events['events'])) {
 					echo $result . "\r\n";
 				}
 			}
-
-			
 		}
 	}
 
