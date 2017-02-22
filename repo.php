@@ -1,19 +1,6 @@
 <?php
 
 
-function postJSONdataAPI($URL, $JSON_STRING)
-{
-	$ch = curl_init($URL);
-	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $JSON_STRING);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-		'Content-Type: application/json',
-		'Content-Length: ' . strlen($JSON_STRING))
-	);
-
-	return curl_exec($ch);
-}
 $access_token = 'tPROSmwb3NreedHXLbUN3c3mEVoJg3zI6BonkWxGBQUYZiz+4vZGHIoTnSJ0XsZeF9eRfpLL4R59Xat41unaUMBXJ3H7tbwMeorABfztCSmgf9xvxZFhZgvolBXxYr2I428eI3q4VOYQV1on4fgrpgdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -35,7 +22,7 @@ if (!is_null($events['events'])) {
             // Build message to reply back
 			$messages = [
 			'type' => 'text',
-			// 'text' => $text
+			'text' => "HELLO"
 			];
 
 // 			$stringInput = 'กชรุณาช่วยค้นหาrdc0200018411และ RDC0200018410ด้วยครับ';
@@ -71,3 +58,18 @@ if (!is_null($events['events'])) {
 	}
 }
 echo "OK";
+
+
+function postJSONdataAPI($URL, $JSON_STRING)
+{
+	$ch = curl_init($URL);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $JSON_STRING);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		'Content-Type: application/json',
+		'Content-Length: ' . strlen($JSON_STRING))
+	);
+
+	return curl_exec($ch);
+}
