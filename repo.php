@@ -35,9 +35,9 @@ if (!is_null($events['events'])) {
 				'type' => 'text',
 				'text' => $bar},{
 					'type' => 'text',
-				'text' => $lo
+				'text' => $bar
 				}
-				],;
+				];
 
 // 			
 
