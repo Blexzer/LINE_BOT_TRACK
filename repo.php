@@ -45,7 +45,7 @@ if (!is_null($events['events'])) {
 				// $lo = $resultApi[0]["RESULT"][0]['ACTION_TRACK_DESCRIPTION'];
 				$x = array(
 					'type' => 'text',
-					'text' => 'Track: '.$bar.'
+					'text' => 'TrackID: '.$bar.'
 					ผู้รับ: '.$RECEIVER_NAME.' ('.$DEST_PROVINCE.')'.'
 					สถานะ: '. $lo .' ('.$ACTION_DATETIME .')'
 					);
